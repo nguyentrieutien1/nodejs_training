@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "nguyenthanhtung",
-    "database": "nodejs_training",
+    "password": "4316187",
+    "database": "zoo",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
