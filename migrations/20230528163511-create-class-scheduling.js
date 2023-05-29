@@ -2,41 +2,38 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Customers", {
+    await queryInterface.createTable('Class_schedulings', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
-      customer_name: {
-        type: Sequelize.STRING,
-      },
-      bank_id: {
+      teacher_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'banks',
+          model: 'teachers',
           key: 'id'
         }
       },
-      account_id: {
+      class_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'accounts',
+          model: 'classes',
           key: 'id'
         }
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-      },
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Customers');
+    await queryInterface.dropTable('Class_schedulings');
   }
 };
