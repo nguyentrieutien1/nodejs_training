@@ -4,9 +4,6 @@ const db = require("./models");
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.listen(5000, () => {
-  console.log("Server is running");
-});
 
 // CLASS
 // Create
@@ -23,6 +20,38 @@ app.post("/class", async (req, res) => {
 app.get("/class", async (req, res) => {
   try {
     const Class = await db.Class.findAll();
+    return res.status(200).json({ Class });
+  } catch (error) {
+    return res.status(5000).json({ error });
+  }
+});
+
+app.get("/class/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const Class = await db.Class.findOne({
+      include: [
+        {
+          model: db.Class_scheduling,
+          include: [
+            {
+              model: db.Teacher,
+              include: [
+                {
+                  model: db.Subject,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          model: db.Student,
+        },
+      ],
+      where: {
+        id,
+      },
+    });
     return res.status(200).json({ Class });
   } catch (error) {
     return res.status(5000).json({ error });
@@ -265,20 +294,23 @@ app.delete("/class_scheduling/:id", async (req, res) => {
 app.get("/classes", async (req, res) => {
   try {
     const classes = await db.Class_scheduling.findAll({
-        include: [
+      include: [
+        {
+          model: db.Teacher,
+          include: [
             {
-                model: db.Teacher,
-                include: [
-                    {
-                        model: db.Subject
-                    }
-                ]
+              model: db.Subject,
             },
-           
-        ]
-    })
-    return res.status(200).json({classes})
+          ],
+        },
+      ],
+    });
+    return res.status(200).json({ classes });
   } catch (error) {
     return res.status(500).json({ error });
   }
+});
+
+app.listen(5000, () => {
+  console.log("Server is running");
 });
