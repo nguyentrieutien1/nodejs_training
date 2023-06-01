@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "nguyenthanhtung",
-    "database": "nodejs_training",
+    "password": "4316187",
+    "database": "Nodejs_Trainning",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
@@ -10,7 +10,7 @@
     "username": "root",
     "password": null,
     "database": "database_test",
-    "host": "127.0.0.1",
+    "host": "127.0.0.1",    
     "dialect": "mysql"
   },
   "production": {
