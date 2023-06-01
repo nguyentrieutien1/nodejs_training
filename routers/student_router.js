@@ -4,7 +4,6 @@ const {
   update_student,
   delete_student,
 } = require("../controllers/StudentController");
-
 const router = require("express").Router();
 // Create
 router.post("/", create_student);

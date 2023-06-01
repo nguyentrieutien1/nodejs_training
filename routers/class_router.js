@@ -1,13 +1,14 @@
 const { Create_Class, Get_Class, Update_Class, Delete_Class, Get_ClassById } = require("../controllers/ClassController");
+const { authentication, authorizion } = require("../middlewares/auth");
 
 const router = require("express").Router();
 
 // Create
-router.post("/", Create_Class );
+router.post("/", Create_Class);
 // Read
 router.get("/", Get_Class);
 // Read class by id
-router.get("/:id", Get_ClassById);
+router.get("/:id", authorizion(["ADMIN", "TEACHER"]), Get_ClassById);
 // Update
 router.put("/:id", Update_Class);
 // Delete
