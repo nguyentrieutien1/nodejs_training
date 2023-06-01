@@ -6,6 +6,8 @@ const teacher_router = require("./routers/teacher_router");
 const subject_router = require("./routers/subject_router");
 const student_router = require("./routers/student_router");
 const classscheduling_router = require("./routers/classscheduling_router");
+const auth = require("./routers/auth");
+
 
 const app = express();
 app.use(express.json());
@@ -24,6 +26,9 @@ app.use("/subject", subject_router);
 app.use("/student", student_router);
 // CLASS SCHEDULING
 app.use("/class_scheduling", classscheduling_router);
+// Auth
+app.use("/auth", auth);
+
 
 
 // // Class_scheduling -> TEACHER -> SUBJECT
